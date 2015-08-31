@@ -17,7 +17,7 @@ best <- function(state, outcome) {
         if (!(state %in% splitdata$states)) {
                 stop("invalid state")
         }
-        else if (!(outcome %in% colnames(splitdata))) {
+        else if (!(outcome %in% colnames(splitdata[3:5]))) {
                 stop("invalid outcome")
         }
         
