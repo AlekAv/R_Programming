@@ -34,8 +34,7 @@ rankhospital <- function(state, outcome, num = "best") {
         ## Translate num into vector
         if (num == "best") num = 1
         else if (num == "worst") num = nrow(z)
-        else if (num < 1 | num > nrow(z)) return(NA)
-        
+
         ## Return hospital name at num relative position
         return(z[num,"name"])
 }
