@@ -19,20 +19,20 @@ rankall <- function(outcome, num = "best") {
                 stop("invalid outcome")
         }
         
-        ## For each state, find the hospital of the given rank
+        ## Get list of unique states and initialise data frame to store results
         uniqueState <- sort(unique(splitdata$states))
         hospitals <- data.frame()
         
+        ## Go through each state and return hospital and state at location n
         for(i in uniqueState) {
                 z <- subset(splitdata, states == i)
-                z <- z[order(z[outcome],z$hospital, decreasing=FALSE,na.last=NA),]
+                z <- z[order(z[outcome],z$hospital, na.last=NA),]
                 
-                ## Translate num into vector
+                ## Translate num into vector n
                 if (num == "best") n = 1
                 else if (num == "worst") n = nrow(z)
                 else n = num
-
-                ## Return hospital name at num relative position
+                
                 hospitals <- rbind(hospitals, cbind((z[n,"hospital"]), i))
                 
         }
